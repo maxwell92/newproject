@@ -1,31 +1,30 @@
 package router
 
 import (
-	"github.com/kataras/iris"
 	"api/controller"
+	"sync"
 )
 
+var once sync.Once
+var r *Router
 type Router struct {
-	controller.Controllers
+	Handlers []controller.IHandler
 }
 
-func New() *Router {
-	r := new(Router)
-
+func Instance() *Router {
+	once.Do(func() {
+		r = new(Router)
+		r.Handlers = make([]controller.IHandler, 0)
+	})
+	return r
 }
 
-func (r *Router) init() {
-	for _, c := range r.Controllers {
-
-	}
+func (r *Router) Add(c controller.IHandler) {
+	r.Handlers = append(r.Handlers, c)
 }
 
 func (r *Router) Regist() {
-
+	for _, h := range r.Handlers {
+		h.Regist()
+	}
 }
-
-
-
-
-
-

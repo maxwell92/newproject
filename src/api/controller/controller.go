@@ -4,34 +4,45 @@ import (
 	"github.com/kataras/iris"
 )
 
-type IController interface {
-	URL() IController
-	Method() IController
+type IHandler interface {
+	Url(url string)
+	Method(method string)
+	Regist()
 
 	// write ok message back to frontend
-	OK(string)
+	OK(message string)
 	// write error message back to frontend
 	ERROR()
 }
 
-type Controller struct {
-	iris.Context
+type Handler struct {
+	*iris.Context
+	URL string
+	METHOD string
 }
 
-func (c *Controller) URL() IController {
+func (h Handler) Regist() {
+	iris.API(h.URL, h)
+}
+
+func (h Handler) Url(url string) {
+	h.URL = url
+}
+
+func (h Handler) GetUrl() string {
+	return h.URL
+}
+
+func (h Handler) Method(method string) {
+	h.METHOD = method
+}
+
+func (h Handler) OK(message string) {
 
 }
 
-func (c *Controller) Method() IController {
+func (h Handler) ERROR() {
 
 }
 
-func (c *Controller) OK(message string) {
-
-}
-
-func (c *Controller) ERROR() {
-
-}
-
-type Controllers []Controller
+type Handlers []Handler

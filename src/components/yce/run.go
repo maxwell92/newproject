@@ -2,10 +2,16 @@ package yce
 
 import (
 	"api/router"
+	user "components/mysql/resource/users"
+	"github.com/kataras/iris"
 )
 
 func Run() {
-	// router.Regist()
-	router.New().Regist()
-	// iris.Listen()
+	user.New().AddControllers()
+
+
+	router.Instance().Regist()
+
+	// iris.StaticServe()
+	iris.Listen(":8080")
 }

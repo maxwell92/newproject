@@ -1,4 +1,4 @@
-package yce
+package main
 
 import (
 	"yce/config"
@@ -7,7 +7,7 @@ import (
 
 func main() {
 	// config.Load()
-	config.New().Load()
+	config.New().ReadOsEnv().Load()
 	// yce.Run()
 	yce.Run()
 }

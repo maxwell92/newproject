@@ -46,6 +46,6 @@ func (mr *MySQLResource) By() MySQLResource {
 
 
 func test() {
-	m := new(MySQLResource)
+//	m := new(MySQLResource)
 }
 

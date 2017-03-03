@@ -2,13 +2,16 @@ package users
 
 import (
 	"components/mysql/resource"
+	controller "api/controller"
 )
 
-type Users struct {
+type User struct {
 	resource.MySQLResource
+	Handlers []controller.IHandler
 }
 
-func New() {
-	u := new(Users)
-	u
+func New() *User {
+	return &User{
+		Handlers: make([]controller.IHandler, 0),
+	}
 }

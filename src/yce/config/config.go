@@ -11,14 +11,16 @@ func New() *Config {
 	c := &Config {
 
 	}
-	c.readOsEnv()
+	return c
 }
 
-func (c *Config) readOsEnv() {
+func (c *Config) ReadOsEnv() *Config {
 	// redis endpoints
 	// mysql endpoints
 	// buntdb endpoints
 	// siAgent endpoints
+
+	return c
 }
 
 
