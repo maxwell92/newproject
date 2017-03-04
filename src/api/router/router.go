@@ -7,6 +7,7 @@ import (
 
 var once sync.Once
 var r *Router
+
 type Router struct {
 	Handlers []controller.IHandler
 }

@@ -9,7 +9,6 @@ import (
 func Run() {
 	user.New().AddControllers()
 
-
 	router.Instance().Regist()
 
 	// iris.StaticServe()

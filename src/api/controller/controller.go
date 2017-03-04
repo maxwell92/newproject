@@ -17,7 +17,7 @@ type IHandler interface {
 
 type Handler struct {
 	*iris.Context
-	URL string
+	URL    string
 	METHOD string
 }
 
@@ -29,20 +29,16 @@ func (h Handler) Url(url string) {
 	h.URL = url
 }
 
-func (h Handler) GetUrl() string {
-	return h.URL
-}
-
 func (h Handler) Method(method string) {
 	h.METHOD = method
 }
 
 func (h Handler) OK(message string) {
-
+	h.Write(message)
 }
 
 func (h Handler) ERROR() {
-
+	h.Write("ERROR")
 }
 
 type Handlers []Handler

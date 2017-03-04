@@ -6,11 +6,8 @@ type Config struct {
 	// Redis
 }
 
-
 func New() *Config {
-	c := &Config {
-
-	}
+	c := &Config{}
 	return c
 }
 
@@ -22,7 +19,6 @@ func (c *Config) ReadOsEnv() *Config {
 
 	return c
 }
-
 
 func (c *Config) Load() {
 

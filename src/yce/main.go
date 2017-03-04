@@ -1,8 +1,8 @@
 package main
 
 import (
-	"yce/config"
 	"components/yce"
+	"yce/config"
 )
 
 func main() {

@@ -1,8 +1,8 @@
 package users
 
 import (
-	"components/mysql/resource"
 	controller "api/controller"
+	"components/mysql/resource"
 )
 
 type User struct {
@@ -14,4 +14,12 @@ func New() *User {
 	return &User{
 		Handlers: make([]controller.IHandler, 0),
 	}
+}
+
+func Create() *CreateUserController {
+
+}
+
+func Check() *CheckUserController {
+
 }
