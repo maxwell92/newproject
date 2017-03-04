@@ -2,12 +2,13 @@ package yce
 
 import (
 	"api/router"
-	user "components/mysql/resource/users"
+	"components/mysql"
 	"github.com/kataras/iris"
 )
 
 func Run() {
-	user.New().AddControllers()
+	mysql.AddControllers()
+	AddControllers()
 
 	router.Instance().Regist()
 
