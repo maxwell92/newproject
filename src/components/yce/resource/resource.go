@@ -10,3 +10,15 @@ type IResource interface {
 	Encode() []byte
 	Decode() string
 }
+
+type YceMetadata struct {
+	SessionId string
+	UserId    int32
+	OrgId     int32
+	DcIdList  []int32
+}
+
+type YceResource struct {
+	Metadata *YceMetadata
+	Spec     IResource
+}
