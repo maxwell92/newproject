@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"encoding/json"
 	"github.com/kataras/iris"
 )
 
@@ -34,11 +35,33 @@ func (h Handler) Method(method string) {
 }
 
 func (h Handler) OK(message string) {
-	h.Write(message)
+	// h.Write(message)
+	resp := &Response{
+		Code: 0,
+		Msg:  message,
+		Data: "",
+	}
+
+	h.Write(resp.Encode())
 }
 
 func (h Handler) ERROR() {
-	h.Write("ERROR")
+	// h.Write("ERROR")
 }
 
 type Handlers []Handler
+
+type Response struct {
+	Code int32  `json:"code"`
+	Msg  string `json:"msg"`
+	Data string `json:"data"`
+}
+
+func (resp Response) Encode() string {
+	data, err := json.Marshal(resp)
+	if err != nil {
+
+	}
+
+	return string(data)
+}
