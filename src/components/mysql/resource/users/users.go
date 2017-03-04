@@ -17,9 +17,9 @@ func New() *User {
 }
 
 func Create() *CreateUserController {
-
+	return &CreateUserController{}
 }
 
 func Check() *CheckUserController {
-
+	return &CheckUserController{}
 }

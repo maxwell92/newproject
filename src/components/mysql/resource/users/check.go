@@ -36,8 +36,7 @@ func (cuc CheckUserController) Post() {
 	// business logic
 
 	// write back result
-	cuc.Response.
-		cuc.OK()
+	cuc.OK("OK")
 }
 
 func (cuc CheckUserController) Get() {
