@@ -5,49 +5,56 @@ import (
 )
 
 type IMySQLResource interface {
-	resource.IResource
 	// Insert is insert on duplicate update
-	Insert() IMySQLResource
-	Query() IMySQLResource
-	SoftDelete() IMySQLResource
+	Insert(string) IMySQLResource
+	Query(string) IMySQLResource
+	SoftDelete(string) IMySQLResource
 }
 
-// MySQLResource is the metadata of every MySQL resource object
 type MySQLResource struct {
+	Metadata *MySQLMetadata
+	Spec     MySQLSpecInterface
+}
+
+func (mr *MySQLResource) exec(SQL string) IMySQLResource {
+
+}
+
+func (mr *MySQLResource) Query(SQL string) IMySQLResource {
+	obj := mr.exec(SQL)
+	return obj
+}
+/*
+func (mr *MySQLResource) Insert(SQL string) MySQLResource {
+	return *mr
+}
+
+func (mr *MySQLResource) SoftDelete(SQL string) MySQLResource {
+
+	return *mr
+}
+
+// by the specific column
+func (mr *MySQLResource) By() MySQLResource {
+
+	return *mr
+}
+*/
+
+func test() {
+	//	m := new(MySQLResource)
+}
+
+type MySQLMetadata struct {
+	Id         int32  `json:"id"`
+	Name       string `json:"name"`
 	CreatedAt  string `json:"createdAt"`
 	ModifiedAt string `json:"modifiedAt"`
 	ModifiedOp int32  `json:"modifiedOp"`
 	Comment    string `json:"comment"`
 }
 
-/*
-type MySQLResource Metadata
-
-type MySQLResource struct {
-	*Metadata `json:"metadata"`
-}
-*/
-
-func (mr *MySQLResource) Insert() MySQLResource {
-	return mr
-}
-
-func (mr *MySQLResource) Query() MySQLResource {
-
-	return mr
-}
-
-func (mr *MySQLResource) SoftDelete() MySQLResource {
-
-	return mr
-}
-
-// by the specific column
-func (mr *MySQLResource) By() MySQLResource {
-
-	return mr
-}
-
-func test() {
-	//	m := new(MySQLResource)
+type MySQLSpecInterface interface {
+	Encode() string
+	Decode([]byte)
 }
